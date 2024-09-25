@@ -1,23 +1,29 @@
-import logo from './logo.svg';
 import './App.css';
+import ProductSection from './ProductSection';
+import { useFetch } from './useFetch';
+
+//useRef Hooks
+// difference between useRef and useState
+
+//Lets create our own custom hook
+
+
+
 
 function App() {
+
+const [products,loading,error] = useFetch()
+
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div  className="App">
+      {loading && <p>Loading...</p>}
+      {error && <p>Error Occurred...</p>}
+  {
+    products.length >0 &&  <h1>{JSON.stringify(products)}</h1>
+  }
+
+   <ProductSection/>
     </div>
   );
 }
